@@ -1,0 +1,64 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scal=1">
+<title>taxes planned form</title>
+<STYLE TYPE="TEXT/CSS">
+    *
+{
+   margin:0;
+}
+body
+{
+    width: 100%;
+    height: 100vh;
+    background: orange;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+FORM
+{
+WIDTH: 190PX;
+HEIGHT: AUTO;
+PADDING: 40PX;
+BORDER-RADIUS: 10PX;
+BACKGROUND: #DDD;
+</style>
+</head>
+<form name ="submit-to-google-sheet">
+<lable for="date">Date:</lable>
+<input type="date" id="date' nam"date">
+<lable>Employ Name:</lable><BR>
+<input type="text" name="Employ Name"><BR>
+<lable>email:</label><BR>
+<input type="email" name="email"><BR>
+<lable>Gender<lable><BR>
+<input type="radio" name="Gender" value="Male"><label>Male</label>
+<input type="radio" name="Gender" value="Female"><lable>Female</label><BR>
+<label>message</label><BR>
+<textarea name="message" cols="20"></textarea><BR>
+<input type="submit" name=""><BR>
+<span id="success"></span>
+</form>
+
+<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbx2xhhFPYqxoki_N_re9UaDP8ug_kR8RkYSSgDRfgy8sRIn5b99kjEa4gsR91EBQlUH/exec'
+  const form = document.forms['submit-to-google-sheet']
+  constsuccess = document.getElementById('success');
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {
+       success.innerHTML="data successfully submit";
+      setTimeout(function()
+{
+       success.innerHTML="";
+},5000)
+form.reset();
+})
+      .catch(error => console.error('Error!', error.message))
+  })
+</script>
+</body>
+</html>
